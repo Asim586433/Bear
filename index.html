@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bike Bear — Creative Digital Agency</title>
+<title>Hadi — Creative Digital Agency</title>
 <meta name="description" content="Single-file interactive recreation of a creative digital agency website.">
 <link rel="icon" href="https://www.bikebear.com.my/wp-content/uploads/2022/08/bike-bear-favicon.png">
 <style>
@@ -12,7 +12,7 @@
 body.lock{overflow:hidden}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}img{max-width:100%;display:block}
 .wrap{width:min(1600px,100%);margin:auto;padding-inline:var(--pad)}.hidden{display:none!important}
 .logo{position:fixed;z-index:1002;top:18px;left:0;background:#fff;padding:13px 30px 13px var(--pad);border-radius:0 70px 70px 0;box-shadow:0 8px 30px #0001}
-.logo img{width:58px;height:58px;object-fit:contain}.menu{position:fixed;z-index:1003;right:24px;top:20px;height:66px;border:0;border-radius:42px;background:#fff;padding:7px 8px 7px 22px;display:flex;align-items:center;gap:14px;font-weight:900;cursor:pointer;box-shadow:0 8px 30px #0002}
+.logo img{width:58px;height:58px;object-fit:contain}.bb-inline-logo{display:block;width:58px;height:58px}.menu{position:fixed;z-index:1003;right:24px;top:20px;height:66px;border:0;border-radius:42px;background:#fff;padding:7px 8px 7px 22px;display:flex;align-items:center;gap:14px;font-weight:900;cursor:pointer;box-shadow:0 8px 30px #0002}
 .menu .dot{width:52px;height:52px;border-radius:50%;background:var(--g);display:grid;place-items:center;font-size:24px;animation:wave 2s infinite}.menu-lines{width:25px;height:16px;position:relative}.menu-lines i{position:absolute;left:0;width:100%;height:2px;background:#000;transition:.25s}.menu-lines i:nth-child(1){top:0}.menu-lines i:nth-child(2){top:7px}.menu-lines i:nth-child(3){top:14px}.menu.open .menu-lines i:nth-child(1){top:7px;transform:rotate(45deg)}.menu.open .menu-lines i:nth-child(2){opacity:0}.menu.open .menu-lines i:nth-child(3){top:7px;transform:rotate(-45deg)}
 @keyframes wave{0%,55%,100%{transform:rotate(0)}10%,30%{transform:rotate(16deg)}20%,40%{transform:rotate(-7deg)}}
 .overlay{position:fixed;inset:0;z-index:1001;background:var(--y);padding:22px;opacity:0;visibility:hidden;transition:.3s}.overlay.open{opacity:1;visibility:visible}
@@ -33,11 +33,24 @@ body.lock{overflow:hidden}a{color:inherit;text-decoration:none}button,input,sele
 .modal{position:fixed;inset:0;z-index:1200;background:#000c;display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-card{width:min(850px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;padding:30px;position:relative}.modal-card h2{font-size:clamp(38px,6vw,80px);line-height:.9;margin:10px 0 20px;text-transform:uppercase}.close{position:absolute;right:15px;top:15px;width:42px;height:42px;border:0;border-radius:50%;background:#000;color:#fff;cursor:pointer}.toast{position:fixed;z-index:2000;left:50%;bottom:25px;transform:translate(-50%,20px);background:#000;color:#fff;padding:12px 18px;border-radius:99px;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
 .reveal{opacity:0;transform:translateY(35px);transition:.65s}.reveal.in{opacity:1;transform:none}
 @media(max-width:900px){.overlay-card{grid-template-columns:1fr}.menu-side{display:none}.menu{width:66px;padding:7px}.menu .label,.menu-lines{display:none}.hero-bear{width:55vw;right:-4%;top:11%}.hero-copy{width:100%;margin:0}.about-grid,.split,.contact-grid{grid-template-columns:1fr}.manifesto-row:nth-child(3){padding-left:0}.culture-grid,.deliverables,.blog-grid,.jobs{grid-template-columns:1fr 1fr}.project-grid{grid-template-columns:1fr}.footer-inner{flex-direction:column;align-items:flex-start}.fist{height:46%}}
-@media(max-width:560px){.logo{top:12px;padding:9px 18px}.logo img{width:44px;height:44px}.menu{right:12px;top:12px;height:58px;width:58px}.menu .dot{width:44px;height:44px}.hero{padding-top:135px}.hero:after{font-size:31vw;top:11%}.hero-bear{width:70vw;right:-15%;top:13%}.manifesto-row{min-height:300px}.manifesto h2{font-size:25vw}.culture-grid,.deliverables,.blog-grid,.jobs{grid-template-columns:1fr}.page-hero{padding-top:140px}.footer-word{font-size:34vw}}
+@media(max-width:560px){.logo{top:12px;padding:9px 18px}.logo img{width:44px;height:44px}.bb-inline-logo{width:44px;height:44px}.menu{right:12px;top:12px;height:58px;width:58px}.menu .dot{width:44px;height:44px}.hero{padding-top:135px}.hero:after{font-size:31vw;top:11%}.hero-bear{width:70vw;right:-15%;top:13%}.manifesto-row{min-height:300px}.manifesto h2{font-size:25vw}.culture-grid,.deliverables,.blog-grid,.jobs{grid-template-columns:1fr}.page-hero{padding-top:140px}.footer-word{font-size:34vw}}
 </style>
 </head>
 <body>
-<a class="logo" href="#/home" aria-label="Bike Bear home"><img src="https://www.bikebear.com.my/wp-content/uploads/2022/08/bike-bear-logo.gif" alt="Bike Bear"></a>
+<a class="logo" href="#/home" aria-label="Bike Bear home">
+<svg class="bb-inline-logo" viewBox="0 0 64 64" aria-label="Bike Bear" role="img">
+  <g fill="#050505">
+    <circle cx="19" cy="18" r="9"/>
+    <circle cx="45" cy="18" r="9"/>
+    <circle cx="32" cy="34" r="24"/>
+  </g>
+  <ellipse cx="32" cy="40" rx="13" ry="10" fill="#ffd900"/>
+  <circle cx="25" cy="31" r="3.3" fill="#ffd900"/>
+  <circle cx="39" cy="31" r="3.3" fill="#ffd900"/>
+  <ellipse cx="32" cy="39" rx="4.5" ry="3.4" fill="#050505"/>
+  <path d="M25 46 Q32 51 39 46" fill="none" stroke="#050505" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+</a>
 <button class="menu" id="menuBtn" aria-label="Open menu"><span class="menu-lines"><i></i><i></i><i></i></span><span class="label">MENU</span><span class="dot">👋</span></button>
 <div class="overlay" id="overlay" aria-hidden="true"><div class="overlay-card">
 <nav class="nav">
@@ -206,5 +219,22 @@ handleForm(document.getElementById("contactForm"),"Thanks — your demo enquiry 
 handleForm(document.getElementById("careerForm"),"Thanks — your demo application was submitted.");
 route();
 </script>
+
+<script>
+document.addEventListener("error", function(e){
+  const img=e.target;
+  if(!(img instanceof HTMLImageElement)) return;
+  if(img.dataset.fallbackDone) return;
+  img.dataset.fallbackDone="1";
+  if(img.classList.contains("hero-bear") || img.classList.contains("menu-bear")){
+    img.style.display="none";
+  } else if(img.classList.contains("about-paw")){
+    img.outerHTML='<div aria-label="Bear paw" style="font-size:120px;line-height:1">🐾</div>';
+  } else if(img.classList.contains("hand")){
+    img.style.display="none";
+  }
+}, true);
+</script>
+
 </body>
 </html>
