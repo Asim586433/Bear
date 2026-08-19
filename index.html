@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bike Bear — Creative Digital Agency</title>
+<meta name="description" content="Single-file interactive recreation of a creative digital agency website.">
+<link rel="icon" href="https://www.bikebear.com.my/wp-content/uploads/2022/08/bike-bear-favicon.png">
+<style>
+:root{--y:#ffd900;--g:#32dc86;--k:#050505;--w:#fff;--muted:#f1f1ed;--pad:clamp(18px,3vw,58px)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#fff;color:#050505;overflow-x:hidden}
+body.lock{overflow:hidden}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}img{max-width:100%;display:block}
+.wrap{width:min(1600px,100%);margin:auto;padding-inline:var(--pad)}.hidden{display:none!important}
+.logo{position:fixed;z-index:1002;top:18px;left:0;background:#fff;padding:13px 30px 13px var(--pad);border-radius:0 70px 70px 0;box-shadow:0 8px 30px #0001}
+.logo img{width:58px;height:58px;object-fit:contain}.menu{position:fixed;z-index:1003;right:24px;top:20px;height:66px;border:0;border-radius:42px;background:#fff;padding:7px 8px 7px 22px;display:flex;align-items:center;gap:14px;font-weight:900;cursor:pointer;box-shadow:0 8px 30px #0002}
+.menu .dot{width:52px;height:52px;border-radius:50%;background:var(--g);display:grid;place-items:center;font-size:24px;animation:wave 2s infinite}.menu-lines{width:25px;height:16px;position:relative}.menu-lines i{position:absolute;left:0;width:100%;height:2px;background:#000;transition:.25s}.menu-lines i:nth-child(1){top:0}.menu-lines i:nth-child(2){top:7px}.menu-lines i:nth-child(3){top:14px}.menu.open .menu-lines i:nth-child(1){top:7px;transform:rotate(45deg)}.menu.open .menu-lines i:nth-child(2){opacity:0}.menu.open .menu-lines i:nth-child(3){top:7px;transform:rotate(-45deg)}
+@keyframes wave{0%,55%,100%{transform:rotate(0)}10%,30%{transform:rotate(16deg)}20%,40%{transform:rotate(-7deg)}}
+.overlay{position:fixed;inset:0;z-index:1001;background:var(--y);padding:22px;opacity:0;visibility:hidden;transition:.3s}.overlay.open{opacity:1;visibility:visible}
+.overlay-card{height:100%;overflow:auto;background:#fff;border-radius:24px;padding:clamp(45px,6vw,100px);display:grid;grid-template-columns:1.4fr .6fr;gap:40px}.nav a{display:block;font-size:clamp(38px,6vw,90px);line-height:1.03;text-transform:uppercase;margin:7px 0;width:max-content;max-width:100%}.nav a:hover{font-style:italic;font-weight:900}.nav a:before{content:"↗";display:inline-grid;place-items:center;width:0;height:0;opacity:0;background:var(--g);border-radius:50%;font-size:24px;color:#fff;vertical-align:middle;margin-right:0;transition:.25s}.nav a:hover:before{width:52px;height:52px;opacity:1;margin-right:14px}.menu-side{display:flex;flex-direction:column;justify-content:space-between;gap:25px}.menu-bear{width:min(330px,100%);margin:auto}.social{display:flex;gap:16px;flex-wrap:wrap;text-transform:uppercase;font-weight:800;font-size:12px}
+.view{display:none;min-height:100vh}.view.active{display:block;animation:viewIn .4s ease}@keyframes viewIn{from{opacity:.2;transform:translateY(8px)}}
+.hero{min-height:100vh;background:var(--y);display:flex;align-items:flex-end;padding:155px var(--pad) 55px;position:relative;overflow:hidden}.hero:after{content:"DARE TO DO";position:absolute;white-space:nowrap;left:-1vw;top:4vh;font-size:clamp(105px,22vw,430px);line-height:.75;font-weight:900;letter-spacing:-.085em}.hero-bear{position:absolute;width:min(38vw,640px);right:14%;top:7%;z-index:2;filter:drop-shadow(0 22px 35px #0003);animation:float 3.4s ease-in-out infinite}.hero-copy{position:relative;z-index:3;margin-left:auto;width:min(490px,95%);padding-bottom:20px}.pill{display:inline-block;border:2px solid;border-radius:100px;padding:5px 10px;text-transform:uppercase;font-weight:800;font-size:12px}.hero-copy p{font-size:18px;line-height:1.5}.ticker{position:absolute;left:0;right:0;bottom:0;height:30px;background:#fff;display:flex;align-items:center;white-space:nowrap;overflow:hidden;font-size:10px;font-weight:800;text-transform:uppercase}.ticker span{display:inline-block;animation:ticker 28s linear infinite}@keyframes ticker{to{transform:translateX(-50%)}}@keyframes float{50%{transform:translateY(-18px) rotate(2deg)}}
+.manifesto{background:var(--y);padding:100px 0 120px}.manifesto-row{min-height:370px;display:flex;align-items:center;position:relative}.manifesto-row:nth-child(2){justify-content:center}.manifesto-row:nth-child(3){justify-content:flex-start;padding-left:20%}.manifesto h2{font-size:clamp(70px,12vw,210px);line-height:.8;margin:0;font-weight:900;text-transform:uppercase;letter-spacing:-.07em}.manifesto h2 em{color:#fff;font-style:normal}.manifesto small{max-width:245px;line-height:1.35;position:absolute}.manifesto-row:nth-child(1) small{right:12%;top:12%}.manifesto-row:nth-child(2) small{left:20%;bottom:4%}.manifesto-row:nth-child(3) small{right:18%;top:48%}
+.about-home{background:var(--y);padding:90px 0}.about-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:8vw;align-items:center}.about-paw{max-width:430px;animation:float 4s ease-in-out infinite}.about-home h2,.page-hero h1,.section-title{font-size:clamp(50px,8vw,130px);line-height:.88;letter-spacing:-.055em;text-transform:uppercase;margin:18px 0}.about-home p{font-size:18px;line-height:1.6}
+.services-home{background:var(--y);padding:60px 0 100px}.service-row{display:grid;grid-template-columns:1fr auto;align-items:center;border-top:1px solid #000;padding:18px 4px;font-size:clamp(28px,3vw,54px);text-transform:uppercase;cursor:pointer}.service-row:last-child{border-bottom:1px solid}.service-row:hover{font-style:italic;font-weight:900}.service-row span:last-child{width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;font-style:normal;font-size:18px}.service-row:hover span:last-child{background:var(--g);color:#fff;transform:rotate(-35deg)}
+.clients{background:var(--y);padding:80px 0 130px;overflow:hidden}.logo-track{display:flex;gap:13px;width:max-content;animation:marq 33s linear infinite;margin-top:55px}.logo-track:hover{animation-play-state:paused}@keyframes marq{to{transform:translateX(-50%)}}.client{width:112px;height:112px;border-radius:50%;background:#fff;display:grid;place-items:center;padding:20px;font-weight:900;font-size:12px;text-align:center}
+.projects-preview,.projects-page{background:#050505;color:#fff;padding:100px 0}.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:38px 18px}.project-card{cursor:pointer}.project-img{aspect-ratio:1.55/1;border-radius:3px;overflow:hidden;background:linear-gradient(135deg,#1e1e1e,#313131);display:grid;place-items:center;position:relative}.project-img img{width:100%;height:100%;object-fit:cover;transition:.45s}.project-card:hover img{transform:scale(1.04);filter:brightness(.72)}.fallback-art{font-size:clamp(28px,5vw,74px);font-weight:900;opacity:.9;padding:25px;text-align:center;letter-spacing:-.05em}.project-meta{display:flex;justify-content:space-between;gap:15px;padding-top:9px;align-items:flex-start}.project-meta h3{margin:0;font-size:15px;text-transform:uppercase}.tags{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px}.tag{border:1px solid #ffffff8a;border-radius:99px;padding:3px 6px;font-size:7px;text-transform:uppercase}.round-btn{width:120px;height:120px;border-radius:50%;border:0;background:#fff;color:#000;display:grid;place-items:center;text-transform:uppercase;font-weight:900;margin:65px auto 0;cursor:pointer;transition:.25s}.round-btn:hover{background:var(--g);color:#fff;transform:rotate(-8deg) scale(1.06)}
+.page-hero{background:var(--y);padding:180px var(--pad) 100px;min-height:56vh;display:flex;align-items:flex-end}.page-hero p{max-width:700px;font-size:18px;line-height:1.55}.page-black{background:#000;color:#fff}.page-white{background:#fff}.content{padding:100px 0}.split{display:grid;grid-template-columns:1fr 1fr;gap:8vw}.copy-lg{font-size:clamp(24px,2.2vw,38px);line-height:1.35}.culture-grid,.deliverables,.blog-grid,.jobs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.culture-card,.deliverable,.blog-card,.job{border:1px solid #000;padding:28px;min-height:210px}.culture-card h3,.deliverable h3,.blog-card h3,.job h3{font-size:28px;margin:0 0 15px}.service-detail{padding:100px 0}.service-detail:nth-child(even){background:#f2f2ef}.deliverable{background:#fff}.testimonial{background:#000;color:#fff;padding:95px var(--pad);font-size:clamp(34px,5vw,80px);line-height:1.02;text-transform:uppercase}
+.filterbar{display:flex;gap:8px;flex-wrap:wrap;margin:35px 0 45px}.filter{border:1px solid #fff;border-radius:99px;background:transparent;color:#fff;padding:8px 12px;cursor:pointer}.filter.active,.filter:hover{background:#fff;color:#000}
+.blog-card{padding:0;overflow:hidden;background:#fff}.blog-thumb{height:220px;background:var(--y);display:grid;place-items:center;font-weight:900;font-size:34px;text-align:center;padding:20px}.blog-body{padding:24px}.blog-card button{border:0;background:#000;color:#fff;padding:10px 15px;border-radius:99px;cursor:pointer}
+.jobs .job{border-radius:16px}.apply{border:0;background:#000;color:#fff;border-radius:99px;padding:12px 18px;font-weight:800;cursor:pointer}.apply:hover{background:var(--g)}
+.contact-page{background:var(--y)}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}.office{border-top:1px solid;padding-top:20px}.office h3{font-size:clamp(36px,4vw,70px);margin:0 0 25px}.form{background:#fff;border-radius:18px;padding:30px}.field{display:grid;gap:7px;margin-bottom:15px}.field input,.field textarea,.field select{width:100%;padding:13px;border:1px solid #bbb;border-radius:8px;background:#fff}.field textarea{min-height:120px;resize:vertical}.submit{border:0;background:#000;color:#fff;border-radius:99px;padding:14px 22px;font-weight:900;cursor:pointer}.submit:hover{background:var(--g)}.form-note{margin-top:14px;font-size:13px}
+.footer{min-height:84vh;background:var(--y);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding-top:70px}.footer-word{font-size:clamp(110px,25vw,430px);line-height:.72;font-weight:900;letter-spacing:-.085em;white-space:nowrap;transform:translateX(-2vw)}.footer-inner{position:relative;z-index:4;padding:20px var(--pad) 35px;display:flex;justify-content:space-between;gap:20px;align-items:end}.fist{position:absolute;bottom:-7%;left:50%;transform:translateX(-50%);width:min(1200px,100%);height:60%;pointer-events:none}.hand{position:absolute;bottom:0;width:52%;transition:1s}.hand.bear{left:0;transform:translateX(-36%)}.hand.human{right:0;transform:translate(36%,-20%)}.footer.active .hand.bear{transform:translateX(0)}.footer.active .hand.human{transform:translate(0,-20%)}.blast{position:absolute;left:50%;bottom:24%;width:120px;height:120px;background:#fff;border-radius:50%;transform:translate(-50%,50%) scale(0);transition:.5s;z-index:2}.footer.active .blast{transform:translate(-50%,50%) scale(8)}
+.modal{position:fixed;inset:0;z-index:1200;background:#000c;display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-card{width:min(850px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;padding:30px;position:relative}.modal-card h2{font-size:clamp(38px,6vw,80px);line-height:.9;margin:10px 0 20px;text-transform:uppercase}.close{position:absolute;right:15px;top:15px;width:42px;height:42px;border:0;border-radius:50%;background:#000;color:#fff;cursor:pointer}.toast{position:fixed;z-index:2000;left:50%;bottom:25px;transform:translate(-50%,20px);background:#000;color:#fff;padding:12px 18px;border-radius:99px;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(35px);transition:.65s}.reveal.in{opacity:1;transform:none}
+@media(max-width:900px){.overlay-card{grid-template-columns:1fr}.menu-side{display:none}.menu{width:66px;padding:7px}.menu .label,.menu-lines{display:none}.hero-bear{width:55vw;right:-4%;top:11%}.hero-copy{width:100%;margin:0}.about-grid,.split,.contact-grid{grid-template-columns:1fr}.manifesto-row:nth-child(3){padding-left:0}.culture-grid,.deliverables,.blog-grid,.jobs{grid-template-columns:1fr 1fr}.project-grid{grid-template-columns:1fr}.footer-inner{flex-direction:column;align-items:flex-start}.fist{height:46%}}
+@media(max-width:560px){.logo{top:12px;padding:9px 18px}.logo img{width:44px;height:44px}.menu{right:12px;top:12px;height:58px;width:58px}.menu .dot{width:44px;height:44px}.hero{padding-top:135px}.hero:after{font-size:31vw;top:11%}.hero-bear{width:70vw;right:-15%;top:13%}.manifesto-row{min-height:300px}.manifesto h2{font-size:25vw}.culture-grid,.deliverables,.blog-grid,.jobs{grid-template-columns:1fr}.page-hero{padding-top:140px}.footer-word{font-size:34vw}}
+</style>
+</head>
+<body>
+<a class="logo" href="#/home" aria-label="Bike Bear home"><img src="https://www.bikebear.com.my/wp-content/uploads/2022/08/bike-bear-logo.gif" alt="Bike Bear"></a>
+<button class="menu" id="menuBtn" aria-label="Open menu"><span class="menu-lines"><i></i><i></i><i></i></span><span class="label">MENU</span><span class="dot">👋</span></button>
+<div class="overlay" id="overlay" aria-hidden="true"><div class="overlay-card">
+<nav class="nav">
+<a href="#/home">Home</a><a href="#/about">About</a><a href="#/services">Services</a><a href="#/projects">Projects</a><a href="#/careers">Careers</a><a href="#/blog">Blog</a><a href="#/contact">Contact</a>
+</nav>
+<aside class="menu-side"><img class="menu-bear" src="https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2022/12/menu-cta-img.png" alt="Bear character"><div class="social"><a target="_blank" href="https://www.facebook.com/bikebear/">Facebook</a><a target="_blank" href="https://www.instagram.com/bikebear/">Instagram</a><a target="_blank" href="https://www.linkedin.com/company/bike-bear/">LinkedIn</a></div></aside>
+</div></div>
+
+<main>
+<section class="view" data-view="home">
+  <section class="hero">
+    <img class="hero-bear" src="https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2022/12/menu-cta-img.png" alt="Bike Bear">
+    <div class="hero-copy"><span class="pill">Creative Digital Agency</span><p>We make bold digital work for brands that want attention, clarity and memorable experiences.</p></div>
+    <div class="ticker"><span>WE ARE A “BEARY” CREATIVE DIGITAL AGENCY FOR HOOMANS · DARE TO DO · BIGGER · BOLDER · BETTER · WE ARE A “BEARY” CREATIVE DIGITAL AGENCY FOR HOOMANS · DARE TO DO · BIGGER · BOLDER · BETTER · </span></div>
+  </section>
+  <section class="manifesto wrap">
+    <div class="manifesto-row reveal"><h2>BIGG<em>ER</em></h2><small>Big thinking, big ideas and ambitious creative work.</small></div>
+    <div class="manifesto-row reveal"><h2>BOLD<em>ER</em></h2><small>We choose brave ideas that help brands stand out.</small></div>
+    <div class="manifesto-row reveal"><h2>BETT<em>ER</em></h2><small>Good work matters. A great working relationship matters too.</small></div>
+  </section>
+  <section class="about-home"><div class="wrap about-grid">
+    <div><span class="pill">About</span><img class="about-paw" src="https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2022/12/bear-palm-img.png" alt="Bear paw"></div>
+    <div><h2 class="reveal">We make it “pawsible” to stand out.</h2><p>In an attention-hungry world, a brand needs more than simple presence. We combine strategy, design and digital craft to create work people notice.</p><a class="pill" href="#/about">Meet the bears ↗</a></div>
+  </div></section>
+  <section class="services-home"><div class="wrap"><span class="pill">Services</span><div id="homeServices"></div></div></section>
+  <section class="clients"><div class="wrap"><span class="pill">Clients</span><h2 class="section-title">Happy hoomans</h2></div><div class="logo-track" id="logoTrack"></div></section>
+  <section class="projects-preview"><div class="wrap"><span class="pill" style="border-color:#fff">Projects</span><h2 class="section-title">Crafted with our bear hands</h2><div class="project-grid" id="previewProjects"></div><button class="round-btn" data-route="projects">View all ↗</button></div></section>
+  <section class="content contact-page"><div class="wrap split"><div><span class="pill">Contact</span><h2 class="section-title">Come say hello.</h2></div><div><p class="copy-lg">Have a project in mind? Tell us what you are building and what success looks like.</p><button class="submit" data-route="contact">Start a project ↗</button></div></div></section>
+  <div class="footer"></div>
+</section>
+
+<section class="view" data-view="projects">
+  <header class="page-hero"><div><span class="pill">Our Work</span><h1>Creative Portfolio<br>& Success Stories</h1><p>A long-form portfolio grid inspired by the original site. Use the filters to explore categories, then open any project for a functional detail view.</p></div></header>
+  <section class="projects-page"><div class="wrap"><div class="filterbar" id="projectFilters"></div><div class="project-grid" id="allProjects"></div></div></section>
+  <div class="footer"></div>
+</section>
+
+<section class="view" data-view="about">
+  <header class="page-hero"><div><span class="pill">About</span><h1>Who are the bears?</h1><p>Designers, developers, storytellers and creators with a shared appetite for brave ideas and useful digital experiences.</p></div></header>
+  <section class="content"><div class="wrap split"><div><h2 class="section-title">This is Bike Bear</h2></div><div><p class="copy-lg">A creative digital team built around curiosity, experimentation and a hands-on approach to solving brand and product challenges.</p></div></div></section>
+  <section class="content" style="background:var(--y)"><div class="wrap"><span class="pill">Culture</span><h2 class="section-title">Curiosity fuels the work</h2><div class="culture-grid">
+    <article class="culture-card"><h3>Think bigger</h3><p>Challenge the obvious route and look for a stronger idea.</p></article>
+    <article class="culture-card"><h3>Stay useful</h3><p>Creative work should look good and help the audience do something.</p></article>
+    <article class="culture-card"><h3>Make together</h3><p>Strategy, design, code and content work better when they connect early.</p></article>
+  </div></section>
+  <div class="testimonial">“Make bold work. Make it useful. Make it memorable.”</div>
+  <div class="footer"></div>
+</section>
+
+<section class="view" data-view="services">
+  <header class="page-hero"><div><span class="pill">Services</span><h1>Things we do with our bear hands.</h1><p>Six connected capabilities, each with its own deliverables and a clear route to start a project.</p></div></header>
+  <div id="serviceDetails"></div>
+  <div class="footer"></div>
+</section>
+
+<section class="view" data-view="careers">
+  <header class="page-hero"><div><span class="pill">Careers</span><h1>Join the den.</h1><p>Explore sample roles and use the working application form. This single-file demo stores no personal data and simulates a successful submission.</p></div></header>
+  <section class="content"><div class="wrap"><div class="jobs" id="jobs"></div></div></section>
+  <section class="content" style="background:#f2f2ef"><div class="wrap split"><div><h2 class="section-title">Apply now</h2><p>Choose a role or send a general application.</p></div><form class="form" id="careerForm">
+    <div class="field"><label>First name</label><input required name="first"></div>
+    <div class="field"><label>Last name</label><input required name="last"></div>
+    <div class="field"><label>Email</label><input required type="email" name="email"></div>
+    <div class="field"><label>Role</label><select name="role" id="roleSelect"><option>General Application</option></select></div>
+    <div class="field"><label>Portfolio / LinkedIn</label><input type="url" name="portfolio" placeholder="https://"></div>
+    <div class="field"><label>Tell us about yourself</label><textarea name="message"></textarea></div>
+    <button class="submit">Submit application</button><div class="form-note">Demo form: submission is simulated in the browser.</div>
+  </form></div></section>
+  <div class="footer"></div>
+</section>
+
+<section class="view" data-view="blog">
+  <header class="page-hero"><div><span class="pill">Blog</span><h1>Ideas from the den.</h1><p>Dummy editorial content has been added so this page works as a complete front-end experience.</p></div></header>
+  <section class="content"><div class="wrap"><div class="blog-grid" id="blogGrid"></div></div></section>
+  <div class="footer"></div>
+</section>
+
+<section class="view" data-view="contact">
+  <header class="page-hero"><div><span class="pill">Contact</span><h1>Come say hello.</h1><p>Choose an office or send a project enquiry using the functional demo form.</p></div></header>
+  <section class="content contact-page"><div class="wrap contact-grid">
+    <div>
+      <div class="office"><h3>Malaysia</h3><p><b>BIKE BEAR SDN BHD (1069929-T)</b><br>B-G-33, Prima Avenue,<br>Jalan PJU 1/39, Dataran Prima,<br>47301 Petaling Jaya,<br>Selangor, Malaysia.</p><p><a href="tel:+60126775637">+6012 677 5637</a><br><a href="tel:+60376224756">+603 7622 4756</a></p></div>
+      <div class="office" style="margin-top:50px"><h3>Singapore</h3><p><b>BIKE BEAR PTE LTD (202225158Z)</b><br>14 Robinson Road,<br>#08-01A Far East Finance Building,<br>Singapore 048545</p><p><a href="tel:+6582881556">+65 82881556</a></p></div>
+    </div>
+    <form class="form" id="contactForm">
+      <div class="field"><label>Name</label><input required name="name"></div>
+      <div class="field"><label>Email</label><input required type="email" name="email"></div>
+      <div class="field"><label>Company</label><input name="company"></div>
+      <div class="field"><label>Service</label><select name="service"><option>Web Design</option><option>Branding</option><option>Social Media</option><option>Campaigns</option><option>Search Marketing</option><option>Video Content</option></select></div>
+      <div class="field"><label>Budget</label><select name="budget"><option>Not sure yet</option><option>RM 10k–30k</option><option>RM 30k–80k</option><option>RM 80k+</option></select></div>
+      <div class="field"><label>Project brief</label><textarea required name="message"></textarea></div>
+      <button class="submit">Send enquiry</button><div class="form-note">Or email <a href="mailto:roar@bikebear.com.my"><b>roar@bikebear.com.my</b></a></div>
+    </form>
+  </div></section>
+  <div class="footer"></div>
+</section>
+</main>
+
+<div class="modal" id="modal"><div class="modal-card"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PROJECTS = [{"name": "HYATT", "cat": "Social Media", "img": "https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2026/01/KV_1.jpg"}, {"name": "POPO", "cat": "Branding", "img": "https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2025/03/popo-brand-feature-img.jpg"}, {"name": "PROMPT COFFEE", "cat": "Branding", "img": "https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2025/04/img-prompt-coffee-featured.jpg"}, {"name": "OHSEM PASTA", "cat": "Branding", "img": "https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2025/04/img-featured-ohsem-pasta.jpg"}, {"name": "THE MIND", "cat": "Social Media", "img": "https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2025/03/the-mind-2-img-e1742886276589.png"}, {"name": "PEACHYBUM", "cat": "Social Media", "img": "https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2025/03/peachybum-cover-img.jpg"}, {"name": "POPO SOCIAL", "cat": "Social Media", "img": "https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2025/03/popo-cover-img.jpg"}, {"name": "ECOWORLD", "cat": "Property \u00b7 Web Design", "img": "https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2025/03/eco-cover-img.jpg"}, {"name": "AVALAND", "cat": "Property \u00b7 Web Design", "img": ""}, {"name": "END SPECIESISM", "cat": "Web Design", "img": ""}, {"name": "11 TANJUNG", "cat": "Landing Page \u00b7 Property \u00b7 Web Design", "img": ""}, {"name": "SUNDATE", "cat": "Mobile App UI \u00b7 Social Media", "img": ""}, {"name": "BIKEBAJU", "cat": "E-Commerce \u00b7 Product \u00b7 Web Design", "img": ""}, {"name": "URBY", "cat": "Mobile App UI \u00b7 Property", "img": ""}, {"name": "ACTMAX", "cat": "Corporate \u00b7 Industrial \u00b7 Web Design", "img": ""}, {"name": "NATURE VALLEY", "cat": "Social Media", "img": ""}, {"name": "THE MIND WEB", "cat": "Social Media \u00b7 Web Design", "img": ""}, {"name": "TEALIVE", "cat": "Web Design", "img": ""}, {"name": "MAMEE", "cat": "Web Design", "img": ""}, {"name": "VIP PASS", "cat": "Branding \u00b7 Social Media \u00b7 Web Design", "img": ""}, {"name": "BELL AND COLLAR", "cat": "Branding \u00b7 Social Media \u00b7 Web Design", "img": ""}, {"name": "153 CREATOR CLUB", "cat": "Web Design", "img": ""}, {"name": "SOL ESTATE", "cat": "Web Design", "img": ""}, {"name": "COSMIC COOKWARE", "cat": "Web Design", "img": ""}, {"name": "BAD LAB", "cat": "Social Media", "img": ""}, {"name": "A.T.E CREATIVE", "cat": "Web Design", "img": ""}, {"name": "UBB AMANAH", "cat": "Web Design", "img": ""}, {"name": "GET FIT CHALLENGE", "cat": "Campaign", "img": ""}, {"name": "SHL PROPERTY", "cat": "Web Design", "img": ""}, {"name": "IQOS", "cat": "Campaign", "img": ""}, {"name": "MANITOU ASIA", "cat": "Social Media", "img": ""}, {"name": "DOUBBLE", "cat": "Web Design", "img": ""}, {"name": "SUGI", "cat": "Campaign", "img": ""}, {"name": "SD GUTHRIE", "cat": "Web Design", "img": ""}];
+const services=[
+["Web Design","Brand-led websites with focused UX, responsive development and conversion-minded journeys.",["UI/UX Web Design","Web Development","Web Support","Maintenance","Landing Pages","Web Apps"]],
+["Branding","Strategy and identity systems built to make a brand more recognisable and consistent.",["Brand Strategy","Brand Identity","Brand Guidelines","Messaging","Packaging","Campaign Creatives"]],
+["Social Media","Always-on content systems that connect brand ideas to daily audience attention.",["Content Strategy","Creative Direction","Content Production","Community","Reporting","Campaign Support"]],
+["Campaigns","Integrated creative campaigns that connect ideas, experiences and measurable actions.",["Campaign Concept","Activation","Contest Mechanics","Landing Pages","Digital PR","Reporting"]],
+["Search Marketing","Search visibility through practical SEO and paid-search foundations.",["SEO Audit","On-page SEO","Technical SEO","SEM","Keyword Strategy","Reporting"]],
+["Video Content","Short-form and campaign video designed for modern feeds and brand storytelling.",["Concept","Scripting","Production","Editing","Motion Graphics","Short-form Content"]]
+];
+const jobs=["Junior Web Designer","Front-End Developer","Social Media Creative","Videographer / Video Editor","Intern — Creative"];
+const posts=[
+["Website Storytelling","How to turn a website from a brochure into a clear brand narrative."],
+["Designing for Attention","A practical look at hierarchy, motion and pacing in modern interfaces."],
+["Brand Systems That Scale","Why repeatable rules make a brand easier to manage across channels."],
+["SEO + UX","Search visibility works better when content structure and user journeys agree."],
+["Short-Form Video","How to build repeatable video formats instead of chasing every trend."],
+["Campaign Landing Pages","A checklist for turning campaign traffic into measurable action."]
+];
+const clientNames=["AAF","SKYWORLD","UNICEF","ISETAN","MAMEE","HUSH PUPPIES","MANITOU","GIS","BRIOHR","TEALIVE","CU","KLCC","SHELL","SUNWAY","MCD","BEIERSDORF"];
+
+const menuBtn=document.getElementById("menuBtn"),overlay=document.getElementById("overlay"),modal=document.getElementById("modal"),toast=document.getElementById("toast");
+function toggleMenu(force){const open=force??!overlay.classList.contains("open");overlay.classList.toggle("open",open);menuBtn.classList.toggle("open",open);document.body.classList.toggle("lock",open);overlay.setAttribute("aria-hidden",String(!open))}
+menuBtn.onclick=()=>toggleMenu();overlay.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>toggleMenu(false)));addEventListener("keydown",e=>{if(e.key==="Escape"){toggleMenu(false);closeModal()}});
+
+function footerHTML(){return `<div class="footer-word">HELLO</div><div class="fist"><div class="blast"></div><img class="hand bear" src="https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2022/10/footer-hand-bear.png" alt=""><img class="hand human" src="https://cdn-ildoepe.nitrocdn.com/GIXZLtSStuyLdituDqVGUCgQekMDtgHB/assets/images/optimized/rev-a1cbef1/www.bikebear.com.my/wp-content/uploads/2022/10/footer-hand-hooman.png" alt=""></div><div class="footer-inner"><h3>LET'S GO!<br><a href="mailto:roar@bikebear.com.my">roar@bikebear.com.my</a></h3><small>© BIKE BEAR SDN BHD · SINGLE-FILE DEMO</small></div>`}
+document.querySelectorAll(".footer").forEach(f=>f.innerHTML=footerHTML());
+
+function showToast(msg){toast.textContent=msg;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),2600)}
+function projectCard(p){const art=p.img?`<img src="${p.img}" alt="${p.name}" onerror="this.remove();this.parentNode.insertAdjacentHTML('beforeend','<div class=\\'fallback-art\\'>${p.name}</div>')">`:`<div class="fallback-art">${p.name}</div>`;return `<article class="project-card reveal" data-project="${encodeURIComponent(p.name)}" data-cat="${p.cat}"><div class="project-img">${art}</div><div class="project-meta"><h3>${p.name}</h3><div class="tags">${p.cat.split("·").map(t=>`<span class="tag">${t.trim()}</span>`).join("")}</div></div></article>`}
+document.getElementById("previewProjects").innerHTML=PROJECTS.slice(0,4).map(projectCard).join("");
+document.getElementById("allProjects").innerHTML=PROJECTS.map(projectCard).join("");
+
+const cats=["All",...new Set(PROJECTS.flatMap(p=>p.cat.split("·").map(x=>x.trim())))];
+document.getElementById("projectFilters").innerHTML=cats.map((c,i)=>`<button class="filter ${i===0?'active':''}" data-filter="${c}">${c}</button>`).join("");
+document.getElementById("projectFilters").onclick=e=>{const b=e.target.closest(".filter");if(!b)return;document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");const f=b.dataset.filter;document.querySelectorAll("#allProjects .project-card").forEach(card=>card.style.display=(f==="All"||card.dataset.cat.split("·").map(x=>x.trim()).includes(f))?"block":"none")};
+
+document.getElementById("homeServices").innerHTML=services.map((s,i)=>`<a class="service-row reveal" href="#/services?service=${i}"><span>${s[0]}</span><span>↗</span></a>`).join("");
+document.getElementById("serviceDetails").innerHTML=services.map((s,i)=>`<section class="service-detail" id="service-${i}"><div class="wrap split"><div><span class="pill">${String(i+1).padStart(2,"0")}</span><h2 class="section-title">${s[0]}</h2></div><div><p class="copy-lg">${s[1]}</p><div class="deliverables">${s[2].map(x=>`<article class="deliverable"><h3>${x}</h3><p>Planning, production and delivery tailored to the project.</p></article>`).join("")}</div><button class="submit" data-route="contact" style="margin-top:28px">Start ${s[0]} project ↗</button></div></div></section>`).join("");
+
+const track=document.getElementById("logoTrack");track.innerHTML=[...clientNames,...clientNames].map(n=>`<div class="client">${n}</div>`).join("");
+document.getElementById("jobs").innerHTML=jobs.map(j=>`<article class="job"><h3>${j}</h3><p>Sample opening for the single-file demo. Flexible skills, strong portfolio and collaborative mindset preferred.</p><button class="apply" data-job="${j}">Apply ↗</button></article>`).join("");
+document.getElementById("roleSelect").innerHTML+=jobs.map(j=>`<option>${j}</option>`).join("");
+document.getElementById("blogGrid").innerHTML=posts.map((p,i)=>`<article class="blog-card"><div class="blog-thumb">${p[0]}</div><div class="blog-body"><small>INSIGHT · ${String(i+1).padStart(2,"0")}</small><h3>${p[0]}</h3><p>${p[1]}</p><button data-post="${i}">Read article ↗</button></div></article>`).join("");
+
+function openModal(html){document.getElementById("modalContent").innerHTML=html;modal.classList.add("open");document.body.classList.add("lock")}
+function closeModal(){modal.classList.remove("open");document.body.classList.remove("lock")}document.getElementById("closeModal").onclick=closeModal;modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
+document.addEventListener("click",e=>{
+ const p=e.target.closest("[data-project]");if(p){const name=decodeURIComponent(p.dataset.project),data=PROJECTS.find(x=>x.name===name);openModal(`<span class="pill">Case Study</span><h2>${data.name}</h2><p class="copy-lg">${data.cat}</p><p>This functional demo case-study view represents the kind of detail page that would normally open as a separate URL. It can be expanded with challenge, approach, results, gallery and testimonial content.</p><button class="submit" data-route="contact">Start a similar project ↗</button>`)}
+ const r=e.target.closest("[data-route]");if(r){location.hash="#/"+r.dataset.route;closeModal()}
+ const a=e.target.closest("[data-job]");if(a){document.getElementById("roleSelect").value=a.dataset.job;location.hash="#/careers";setTimeout(()=>document.getElementById("careerForm").scrollIntoView({behavior:"smooth"}),120)}
+ const post=e.target.closest("[data-post]");if(post){const x=posts[+post.dataset.post];openModal(`<span class="pill">Insight</span><h2>${x[0]}</h2><p class="copy-lg">${x[1]}</p><p>This is dummy editorial copy added to keep the single-file website fully functional. Replace this section with the final article content when available.</p><p>Good digital work comes from connecting strategy, audience needs, design decisions and measurable outcomes rather than treating each channel in isolation.</p>`)}
+});
+
+function route(){
+ let raw=location.hash.replace(/^#\/?/,"")||"home", [path,q=""]=raw.split("?");if(!document.querySelector(`.view[data-view="${path}"]`))path="home";
+ document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.dataset.view===path));toggleMenu(false);scrollTo(0,0);setTimeout(initObservers,30);
+ if(path==="services"&&q){const sp=new URLSearchParams(q),idx=sp.get("service");if(idx!==null)setTimeout(()=>document.getElementById("service-"+idx)?.scrollIntoView({behavior:"smooth"}),150)}
+}
+addEventListener("hashchange",route);
+
+function initObservers(){document.querySelectorAll(".view.active .reveal").forEach(el=>el.classList.remove("in"));const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.1});document.querySelectorAll(".view.active .reveal").forEach(el=>io.observe(el));document.querySelectorAll(".view.active .footer").forEach(f=>{new IntersectionObserver(([e])=>f.classList.toggle("active",e.isIntersecting),{threshold:.3}).observe(f)})}
+
+function handleForm(form,msg){form.addEventListener("submit",e=>{e.preventDefault();if(!form.reportValidity())return;showToast(msg);form.reset()})}
+handleForm(document.getElementById("contactForm"),"Thanks — your demo enquiry was submitted.");
+handleForm(document.getElementById("careerForm"),"Thanks — your demo application was submitted.");
+route();
+</script>
+</body>
+</html>
